@@ -14,7 +14,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Projects::all();
+        $projects = Projects::paginate(10);
         return view('projects.index', compact('projects'));
     }
 
@@ -25,7 +25,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -36,7 +36,8 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Projects::create(['title' => $request->title, 'description' => $request->description]);
+        return redirect('/projects');
     }
 
     /**
@@ -56,9 +57,11 @@ class ProjectsController extends Controller
      * @param  \App\Projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function edit(Projects $projects)
+    public function edit(Projects $projects, $id)
     {
-        //
+        
+        $project = Projects::findorfail($id);
+        return view('projects.edit', compact('project'));    
     }
 
     /**
@@ -68,9 +71,13 @@ class ProjectsController extends Controller
      * @param  \App\Projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Projects $projects)
+    public function update(Request $request, Projects $projects, $id)
     {
-        //
+        $project = Projects::findOrFail($id);
+        $project->title = $request->title;
+        $project->description = $request->description;
+        $project->save();
+        return redirect('/projects');
     }
 
     /**
@@ -79,8 +86,9 @@ class ProjectsController extends Controller
      * @param  \App\Projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Projects $projects)
+    public function destroy(Projects $projects, $id)
     {
-        //
+        Projects::destroy($id);
+        return redirect('/projects');
     }
 }
