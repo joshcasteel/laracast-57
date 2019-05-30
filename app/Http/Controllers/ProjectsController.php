@@ -36,11 +36,11 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $attributes = $request->validate([
             'title' => 'required|min:3',
             'description' => 'required|min:5'
         ]);
-        Projects::create(['title' => $request->title, 'description' => $request->description]);
+        Projects::create($attributes);
         return redirect('/projects');
     }
 
@@ -78,7 +78,11 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Projects $projects, $id)
     {
-        Projects::whereId($id)->update(['title' => $request->title, 'description' => $request->description]);
+        $attributes = $request->validate([
+            'title' => 'required|min:3',
+            'description' => 'required|min:5'
+        ]);
+        Projects::whereId($id)->update($attributes);
         return redirect('/projects');
     }
 

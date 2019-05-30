@@ -24,4 +24,11 @@
             <button type="submit" class="btn red">Delete</button>
         </form>
     </div>
+    <div class="row">
+        <ul class="col s6">
+            @foreach ($errors->all() as $error)
+                <li class="card-panel center red">{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
 @endsection
