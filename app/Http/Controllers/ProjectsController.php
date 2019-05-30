@@ -46,9 +46,10 @@ class ProjectsController extends Controller
      * @param  \App\Projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function show(Projects $projects)
+    public function show(Projects $projects, $id)
     {
-        //
+        $project = Projects::findOrFail($id);
+        return view('projects.show', compact('project'));
     }
 
     /**
@@ -60,7 +61,7 @@ class ProjectsController extends Controller
     public function edit(Projects $projects, $id)
     {
         
-        $project = Projects::findorfail($id);
+        $project = Projects::findOrFail($id);
         return view('projects.edit', compact('project'));    
     }
 

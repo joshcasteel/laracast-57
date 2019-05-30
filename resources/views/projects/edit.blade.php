@@ -16,7 +16,7 @@
                     <label for="description">Description</label>
                 </div>
             </div>
-            <button type="submit" class="btn">Submit</button>
+            <button type="submit" class="btn">Update</button>
         </form>
         <form action="/projects/{{$project->id}}" method="POST" class="col s12">
             @csrf
