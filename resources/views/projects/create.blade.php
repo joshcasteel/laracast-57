@@ -10,12 +10,20 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s10">
+            <div class="input-field col s6">
               <textarea name="description" class="materialize-textarea" data-length="255"></textarea>
               <label for="description">Description</label>
             </div>
           </div>
           <button type="submit" class="btn">Submit</button>
         </form>
+        
       </div>
+      <div class="row">
+        <ul class="col s6">
+            @foreach ($errors->all() as $error)
+                <li class="card-panel center red">{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
 @endsection

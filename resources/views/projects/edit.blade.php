@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s10">
+                <div class="input-field col s6">
                     <textarea name="description" class="materialize-textarea" data-length="255">{{$project->description}}</textarea>
                     <label for="description">Description</label>
                 </div>
