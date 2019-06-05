@@ -9,10 +9,10 @@ use App\Projects;
 
 class ProjectsTasksController extends Controller
 {
-    public function store($project)
+    public function store(Projects $project)
     {
         $attributes = request()->validate(['description' => 'required|min:3']);
-        Task::create(['projects_id' => $project, 'description' => request('description')]);
+        $project->addTask($attributes);
         return back();
     }
 
