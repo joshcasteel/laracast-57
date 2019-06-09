@@ -15,9 +15,11 @@
         <h6>Tasks</h6>
         @foreach ($project->tasks as $task)
             <div class="row">
-                <form action="/tasks/{{$task->id}}" method="POST">
+                <form action="/completed-tasks/{{$task->id}}" method="POST">
                     @csrf
-                    @method('PATCH')
+                    @if ($task->completed)
+                        @method('DELETE')                        
+                    @endif
                     <div class="col s6 m4">
                         <label for="completed{{$task->id}}">
                             <input type="checkbox"
