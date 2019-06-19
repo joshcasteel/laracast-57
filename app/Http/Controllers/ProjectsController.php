@@ -14,7 +14,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Projects::paginate(10);
+        $projects = Projects::where('owner_id', auth()->id())->get();
         return view('projects.index', compact('projects'));
     }
 
