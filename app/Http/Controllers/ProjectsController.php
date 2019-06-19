@@ -40,7 +40,7 @@ class ProjectsController extends Controller
             'title' => 'required|min:3',
             'description' => 'required|min:5'
         ]);
-        Projects::create($attributes);
+        Projects::create($attributes + ['owner_id' => auth()->id()]);
         return redirect('/projects');
     }
 
@@ -53,6 +53,10 @@ class ProjectsController extends Controller
     public function show(Projects $projects, $id)
     {
         $project = Projects::findOrFail($id);
+        if($project->owner_id !== auth()->id())
+        {
+            abort(403);
+        }
         return view('projects.show', compact('project'));
     }
 
