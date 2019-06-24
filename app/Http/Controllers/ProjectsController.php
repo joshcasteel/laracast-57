@@ -53,10 +53,8 @@ class ProjectsController extends Controller
     public function show(Projects $projects, $id)
     {
         $project = Projects::findOrFail($id);
-        if($project->owner_id !== auth()->id())
-        {
-            abort(403);
-        }
+        $this->authorize('view', $project);
+        
         return view('projects.show', compact('project'));
     }
 
