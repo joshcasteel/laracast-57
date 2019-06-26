@@ -53,7 +53,7 @@ class ProjectsController extends Controller
     public function show(Projects $projects, $id)
     {
         $project = Projects::findOrFail($id);
-        $this->authorize('view', $project);
+        $this->authorize('update', $project);
         
         return view('projects.show', compact('project'));
     }

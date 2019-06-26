@@ -17,67 +17,9 @@ class ProjectsPolicy
      * @param  \App\Projects  $projects
      * @return mixed
      */
-    public function view(User $user, Projects $projects)
+    public function update(User $user, Projects $projects)
     {
         return $projects->owner_id == $user->id;
     }
 
-    /**
-     * Determine whether the user can create projects.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can update the projects.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Projects  $projects
-     * @return mixed
-     */
-    public function update(User $user, Projects $projects)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can delete the projects.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Projects  $projects
-     * @return mixed
-     */
-    public function delete(User $user, Projects $projects)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the projects.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Projects  $projects
-     * @return mixed
-     */
-    public function restore(User $user, Projects $projects)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the projects.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Projects  $projects
-     * @return mixed
-     */
-    public function forceDelete(User $user, Projects $projects)
-    {
-        //
-    }
 }
